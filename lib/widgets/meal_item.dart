@@ -9,8 +9,6 @@ class MealItem extends StatelessWidget {
   final Meal meal;
   final void Function(Meal meal) onSelectMeal;
 
-  
-
   String get complexityText =>
       meal.complexity.name[0].toLowerCase() + meal.complexity.name.substring(1);
 
@@ -29,12 +27,15 @@ class MealItem extends StatelessWidget {
         onTap: () {onSelectMeal(meal);},
         child: Stack(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-              fit: BoxFit.cover,
-              height: 200,
-              width: double.infinity,
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity,
+              ),
             ),
             Positioned(
                 bottom: 0,
